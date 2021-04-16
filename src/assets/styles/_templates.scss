@@ -1,0 +1,29 @@
+$main-background-color: #3ea9f5;
+$background-color-hover: #dddddd;
+$font-color: #363636;
+
+%container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%absolute-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+%style-none {
+  text-decoration: none;
+  outline: none;
+  border: none;
+  list-style: none;
+}

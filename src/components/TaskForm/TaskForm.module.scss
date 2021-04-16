@@ -1,0 +1,38 @@
+@import '../../assets/styles/templates';
+
+input {
+  @extend %style-none;
+
+  width: 80%;
+  padding: 10px 5px;
+  border: 1px solid $font-color;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 3px 9px 9px rgba(0, 0, 0, 0.2);
+}
+
+.addButton,
+.resButton,
+.addBtn {
+  position: absolute;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.addButton {
+  @extend %style-none;
+
+  top: 253px;
+  left: 61.5%;
+}
+
+.addBtn {
+  width: 23px;
+  left: 97px;
+  bottom: 123px;
+}
+
+.resButton {
+  right: 45px;
+  top: 143px;
+}

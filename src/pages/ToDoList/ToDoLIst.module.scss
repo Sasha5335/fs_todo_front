@@ -1,0 +1,17 @@
+@import '../../assets/styles/templates';
+
+.container {
+  @extend %container;
+
+  width: 450px;
+  margin-top: 50px;
+  text-align: center;
+  background-color: #ebebeb;
+  font-family: 'Nunito', sans-serif;
+  color: $font-color;
+  position: relative;
+}
+
+h1 {
+  padding: 20px 0 10px 0;
+}
