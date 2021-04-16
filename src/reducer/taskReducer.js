@@ -2,47 +2,36 @@ import ACTION_TYPES from '../actions/actionTypes';
 
 const initialState = {
   tasks: [],
-  idFetching: false,
+  isFetching: false,
   error: null,
 };
-
-let serial = 1;
 
 function taskReducer(state = initialState, action) {
   switch (action.type) {
     case ACTION_TYPES.CREATE_TASK_REQUEST: {
-      const { tasks } = state;
-      const { values: task } = action;
-
-      const newTasks = [...tasks, { ...task, id: serial++ }];
-
       return {
         ...state,
-        tasks: newTasks,
+        isFetching: true,
       };
     }
 
     case ACTION_TYPES.CREATE_TASK_SUCCESS: {
-      const { tasks } = state;
       const { values: task } = action;
-
-      const newTasks = [...tasks, { ...task, id: serial++ }];
 
       return {
         ...state,
-        tasks: newTasks,
+        isFetching: false,
+        tasks: [...state.tasks, task],
       };
     }
 
     case ACTION_TYPES.CREATE_TASK_ERROR: {
-      const { tasks } = state;
-      const { values: task } = action;
-
-      const newTasks = [...tasks, { ...task, id: serial++ }];
+      const { error } = action;
 
       return {
         ...state,
-        tasks: newTasks,
+        isFetching: false,
+        error,
       };
     }
 
