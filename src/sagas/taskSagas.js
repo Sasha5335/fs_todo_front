@@ -1,17 +1,47 @@
 import { put } from 'redux-saga/effects';
+import * as ActionCreators from '../actions';
 import * as API from '../api';
-import * as TaskActionCreators from '../actions/taskCreators';
+
+export function* getTasksSaga(action) {
+  try {
+    const {
+      data: { data: tasks },
+    } = yield API.getTasks();
+
+    yield put(ActionCreators.getTasksSuccess({ tasks }));
+  } catch (error) {
+    yield put(ActionCreators.getTasksError({ error }));
+  }
+}
 
 export function* createTaskSaga(action) {
   try {
     const {
-      data: {
-        data: [task],
-      },
-    } = yield API.createTask(action.values);
+      payload: { task },
+    } = action;
 
-    yield put(TaskActionCreators.createTaskSuccess(task));
+    const {
+      data: { data: newTask },
+    } = yield API.createTask(task);
+
+    yield put(ActionCreators.createTaskSuccess({ task: newTask }));
   } catch (error) {
-    yield put(TaskActionCreators.createTaskError(error));
+    yield put(ActionCreators.createTaskError({ error }));
+  }
+}
+
+export function* deleteTaskSaga(action) {
+  try {
+    const {
+      payload: { id },
+    } = action;
+
+    const {
+      data: { data },
+    } = yield API.deleteTask({ id });
+
+    yield put(ActionCreators.deleteTaskSuccess({ id }));
+  } catch (error) {
+    yield put(ActionCreators.deleteTaskError({ error }));
   }
 }

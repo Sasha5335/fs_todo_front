@@ -1,9 +1,21 @@
 const ACTION_TYPES = {
-  CREATE_TASK_REQUEST: 'CREATE_TASK_REQUEST',
-  CREATE_TASK_SUCCESS: 'CREATE_TASK_SUCCESS',
-  CREATE_TASK_ERROR: 'CREATE_TASK_ERROR',
-  DELETE_TASK: 'DELETE_TASK',
-  UPDATE_TASK: 'UPDATE_TASK',
+  CREATE_TASK_REQUEST: 'todo/createRequest',
+  CREATE_TASK_SUCCESS: 'todo/createSuccess',
+  CREATE_TASK_ERROR: 'todo/createError',
+
+  GET_TASK_REQUEST: 'todo/getRequest',
+  GET_TASK_SUCCESS: 'todo/getSuccess',
+  GET_TASK_ERROR: 'todo/getError',
+
+  UPDATE_TASK_REQUEST: 'todo/updateRequest',
+  UPDATE_TASK_SUCCESS: 'todo/updateSuccess',
+  UPDATE_TASK_ERROR: 'todo/updateError',
+
+  DELETE_TASK_REQUEST: 'todo/deleteRequest',
+  DELETE_TASK_SUCCESS: 'todo/deleteSuccess',
+  DELETE_TASK_ERROR: 'todo/deleteError',
+
+  CLEAR_TASK_ERROR: 'todo/clearError',
 };
 
 export default ACTION_TYPES;

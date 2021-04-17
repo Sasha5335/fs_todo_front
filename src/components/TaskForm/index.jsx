@@ -1,6 +1,6 @@
 import styles from './TaskForm.module.scss';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { createTaskRequest } from '../../actions/taskCreators';
+import { getTasksRequest } from '../../actions';
 import { connect } from 'react-redux';
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
@@ -38,7 +38,7 @@ const ToDoPage = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  createTaskAction: (values) => dispatch(createTaskRequest(values)),
+  createTaskAction: (values) => dispatch(getTasksRequest(values)),
 });
 
 export default connect(null, mapDispatchToProps)(ToDoPage);
