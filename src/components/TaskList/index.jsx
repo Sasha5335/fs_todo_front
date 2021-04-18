@@ -1,13 +1,23 @@
 import styles from './TaskList.module.scss';
-import React from 'react';
-import { connect } from 'react-redux';
-import * as TaskCreators from '../../actions';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import * as ActionCreators from '../../actions';
 
 import Icon from '@mdi/react';
 import { mdiBeakerRemoveOutline } from '@mdi/js';
 
 const TaskList = (props) => {
-  const { tasks, isFetching, error, deleteTaskSuccess } = props;
+  const { tasks, isFetching, error } = useSelector((state) => state.task);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(ActionCreators.getTasksRequest());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(ActionCreators.deleteTaskSuccess());
+  }, [dispatch]);
+
   return (
     <>
       <section className={styles.todoArrMasage}>
@@ -15,24 +25,22 @@ const TaskList = (props) => {
         {error && JSON.stringify(error)}
 
         {tasks.map((task) => {
-          const { id, body } = task;
-
           return (
-            <article className={styles.todoMasage} key={id}>
+            <article className={styles.todoMasage} key={task}>
               <div className={styles.todoMasageWrapper}>
-                {JSON.stringify(body, null, 8)}
+                {JSON.stringify(task, null, 8)}
               </div>
 
-              <input
+              {/* <input
                 type="checkbox"
                 className={styles.checked}
                 checked={task.isFetching}
-              />
+              /> */}
 
               <Icon
                 className={styles.removeBtn}
                 onClick={() => {
-                  deleteTaskSuccess(id);
+                  // deleteTaskSuccess(id);
                 }}
                 path={mdiBeakerRemoveOutline}
               />
@@ -44,9 +52,4 @@ const TaskList = (props) => {
   );
 };
 
-const mapStateToProps = ({ task }) => task;
-const mapDispatchToProps = (dispatch) => ({
-  deleteAction: (id) => dispatch(TaskCreators.deleteTaskSuccess(id)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
+export default TaskList;

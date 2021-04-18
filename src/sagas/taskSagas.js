@@ -6,7 +6,7 @@ export function* getTasksSaga(action) {
   try {
     const {
       data: { data: tasks },
-    } = yield API.getTasks();
+    } = yield API.getTasks(action.payload);
 
     yield put(ActionCreators.getTasksSuccess({ tasks }));
   } catch (error) {
@@ -16,15 +16,13 @@ export function* getTasksSaga(action) {
 
 export function* createTaskSaga(action) {
   try {
-    const {
-      payload: { task },
-    } = action;
+    const { payload } = action;
 
     const {
-      data: { data: newTask },
-    } = yield API.createTask(task);
+      data: { data: task },
+    } = yield API.createTask({ ...payload.task });
 
-    yield put(ActionCreators.createTaskSuccess({ task: newTask }));
+    yield put(ActionCreators.createTaskSuccess(task));
   } catch (error) {
     yield put(ActionCreators.createTaskError({ error }));
   }

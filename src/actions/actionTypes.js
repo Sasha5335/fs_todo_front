@@ -1,21 +1,21 @@
 const ACTION_TYPES = {
-  CREATE_TASK_REQUEST: 'todo/createRequest',
-  CREATE_TASK_SUCCESS: 'todo/createSuccess',
-  CREATE_TASK_ERROR: 'todo/createError',
+  CREATE_TASK_REQUEST: 'task/createRequest',
+  CREATE_TASK_SUCCESS: 'task/createSuccess',
+  CREATE_TASK_ERROR: 'task/createError',
 
-  GET_TASK_REQUEST: 'todo/getRequest',
-  GET_TASK_SUCCESS: 'todo/getSuccess',
-  GET_TASK_ERROR: 'todo/getError',
+  GET_TASKS_REQUEST: 'task/getRequest',
+  GET_TASKS_SUCCESS: 'task/getSuccess',
+  GET_TASKS_ERROR: 'task/getError',
 
-  UPDATE_TASK_REQUEST: 'todo/updateRequest',
-  UPDATE_TASK_SUCCESS: 'todo/updateSuccess',
-  UPDATE_TASK_ERROR: 'todo/updateError',
+  UPDATE_TASK_REQUEST: 'task/updateRequest',
+  UPDATE_TASK_SUCCESS: 'task/updateSuccess',
+  UPDATE_TASK_ERROR: 'task/updateError',
 
-  DELETE_TASK_REQUEST: 'todo/deleteRequest',
-  DELETE_TASK_SUCCESS: 'todo/deleteSuccess',
-  DELETE_TASK_ERROR: 'todo/deleteError',
+  DELETE_TASK_REQUEST: 'task/deleteRequest',
+  DELETE_TASK_SUCCESS: 'task/deleteSuccess',
+  DELETE_TASK_ERROR: 'task/deleteError',
 
-  CLEAR_TASK_ERROR: 'todo/clearError',
+  CLEAR_TASK_ERROR: 'task/clearError',
 };
 
 export default ACTION_TYPES;

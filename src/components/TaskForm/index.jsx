@@ -1,29 +1,31 @@
 import styles from './TaskForm.module.scss';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { getTasksRequest } from '../../actions';
-import { connect } from 'react-redux';
+import * as ActionCreators from '../../actions';
+import { useDispatch } from 'react-redux';
+
 import Icon from '@mdi/react';
 import { mdiPlus } from '@mdi/js';
 
 const ToDoPage = (props) => {
-  const { createTaskAction } = props;
+  const dispatch = useDispatch();
+
+  const values = {
+    body: '',
+    // dedline: '',
+    isDone: false,
+  };
 
   const onSubmit = (values, formikBag) => {
-    createTaskAction(values);
+    dispatch(ActionCreators.createTaskRequest(values));
     formikBag.resetForm();
   };
 
   return (
-    <Formik
-      initialValues={{
-        body: '',
-        isDone: false,
-      }}
-      onSubmit={onSubmit}
-    >
+    <Formik initialValues={values} onSubmit={onSubmit}>
       <Form>
         <Field name="body" />
         <ErrorMessage name="body" component="div" />
+        {/* <Field name="dadline" /> */}
 
         <button type="reset" className={styles.resButton}>
           Reset
@@ -37,8 +39,4 @@ const ToDoPage = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  createTaskAction: (values) => dispatch(getTasksRequest(values)),
-});
-
-export default connect(null, mapDispatchToProps)(ToDoPage);
+export default ToDoPage;

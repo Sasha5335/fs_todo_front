@@ -7,7 +7,7 @@ const http = axios.create({
 
 export const getTasks = () => http.get(`/tasks`);
 
-export const createTask = (taskData) => http.post(`/tasks`, taskData);
+export const createTask = (...task) => http.post(`/tasks`, task);
 
 export const deleteTask = ({ id } = {}) => http.delete(`/tasks/${id}`);
 

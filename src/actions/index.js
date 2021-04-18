@@ -1,32 +1,32 @@
 import ACTION_TYPES from './actionTypes';
 
-export const createTaskRequest = ({ task }) => ({
+export const createTaskRequest = (task) => ({
   type: ACTION_TYPES.CREATE_TASK_REQUEST,
   payload: { task },
 });
 
-export const createTaskSuccess = ({ task }) => ({
+export const createTaskSuccess = (task) => ({
   type: ACTION_TYPES.CREATE_TASK_SUCCESS,
   payload: { task },
 });
 
-export const createTaskError = ({ error }) => ({
+export const createTaskError = (error) => ({
   type: ACTION_TYPES.CREATE_TASK_ERROR,
   payload: { error },
 });
 
-export const getTasksRequest = ({ option } = {}) => ({
-  type: ACTION_TYPES.GET_TASK_REQUEST,
-  payload: { ...option },
+export const getTasksRequest = (options = {}) => ({
+  type: ACTION_TYPES.GET_TASKS_REQUEST,
+  payload: { ...options },
 });
 
-export const getTasksSuccess = ({ tasks } = {}) => ({
-  type: ACTION_TYPES.GET_TASK_SUCCESS,
+export const getTasksSuccess = (tasks = {}) => ({
+  type: ACTION_TYPES.GET_TASKS_SUCCESS,
   payload: { tasks },
 });
 
 export const getTasksError = ({ error }) => ({
-  type: ACTION_TYPES.GET_TASK_ERROR,
+  type: ACTION_TYPES.GET_TASKS_ERROR,
   payload: { error },
 });
 

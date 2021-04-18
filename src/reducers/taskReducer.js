@@ -7,46 +7,37 @@ const initialState = {
   error: null,
 };
 
+const requestHandler = produce((draft, action) => {
+  draft.isFetching = true;
+});
+
+const errorHandler = produce((draft, action) => {
+  const {
+    payload: { error },
+  } = action;
+  draft.error = error;
+  draft.isFetching = false;
+});
+
 const handlers = {
-  [ACTION_TYPES.GET_TASK_REQUEST]: produce((draft, action) => {
-    draft.isFetching = true;
-  }),
-  [ACTION_TYPES.GET_TASK_SUCCESS]: produce((draft, action) => {
+  [ACTION_TYPES.GET_TASKS_REQUEST]: requestHandler,
+  [ACTION_TYPES.CREATE_TASK_REQUEST]: requestHandler,
+  [ACTION_TYPES.DELETE_TASK_REQUEST]: requestHandler,
+
+  [ACTION_TYPES.GET_TASKS_SUCCESS]: produce((draft, action) => {
     const {
       payload: { tasks },
     } = action;
 
-    draft.isFetching = false;
+    // draft.isFetching = false;
     draft.tasks.push(...tasks);
-  }),
-  [ACTION_TYPES.GET_TASK_ERROR]: produce((draft, action) => {
-    const {
-      payload: { error },
-    } = action;
-
-    draft.isFetching = false;
-    draft.error = error;
-  }),
-  [ACTION_TYPES.CREATE_TASK_REQUEST]: produce((draft, action) => {
-    draft.isFetching = true;
   }),
   [ACTION_TYPES.CREATE_TASK_SUCCESS]: produce((draft, action) => {
     const {
       payload: { task },
     } = action;
-    draft.isFetching = false;
+    // draft.isFetching = false;
     draft.tasks.push(task);
-  }),
-  [ACTION_TYPES.CREATE_TASK_ERROR]: produce((draft, action) => {
-    const {
-      payload: { error },
-    } = action;
-
-    draft.isFetching = false;
-    draft.error = error;
-  }),
-  [ACTION_TYPES.DELETE_TASK_REQUEST]: produce((draft) => {
-    draft.isFetching = true;
   }),
   [ACTION_TYPES.DELETE_TASK_SUCCESS]: produce((draft, action) => {
     const {
@@ -55,19 +46,13 @@ const handlers = {
     draft.isFetching = false;
     draft.tasks = draft.tasks.filter((task) => task.id !== id);
   }),
-  [ACTION_TYPES.DELETE_TASK_ERROR]: produce((draft, action) => {
-    const {
-      payload: { error },
-    } = action;
-    draft.error = error;
-    draft.isFetching = false;
-  }),
-  [ACTION_TYPES.CLEAR_TASK_ERROR]: produce((draft) => {
-    draft.error = null;
-  }),
+
+  [ACTION_TYPES.GET_TASKS_ERROR]: errorHandler,
+  [ACTION_TYPES.CREATE_TASK_ERROR]: errorHandler,
+  [ACTION_TYPES.DELETE_TASK_ERROR]: errorHandler,
 };
 
-function reducer(state = initialState, action) {
+function taskReducer(state = initialState, action) {
   const { type } = action;
 
   if (handlers[type]) {
@@ -76,4 +61,4 @@ function reducer(state = initialState, action) {
   return state;
 }
 
-export default reducer;
+export default taskReducer;
