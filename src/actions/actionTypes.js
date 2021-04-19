@@ -14,8 +14,6 @@ const ACTION_TYPES = {
   DELETE_TASK_REQUEST: 'task/deleteRequest',
   DELETE_TASK_SUCCESS: 'task/deleteSuccess',
   DELETE_TASK_ERROR: 'task/deleteError',
-
-  CLEAR_TASK_ERROR: 'task/clearError',
 };
 
 export default ACTION_TYPES;

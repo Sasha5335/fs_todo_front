@@ -29,14 +29,14 @@ const handlers = {
       payload: { tasks },
     } = action;
 
-    // draft.isFetching = false;
+    draft.isFetching = false;
     draft.tasks.push(...tasks);
   }),
   [ACTION_TYPES.CREATE_TASK_SUCCESS]: produce((draft, action) => {
     const {
       payload: { task },
     } = action;
-    // draft.isFetching = false;
+    draft.isFetching = false;
     draft.tasks.push(task);
   }),
   [ACTION_TYPES.DELETE_TASK_SUCCESS]: produce((draft, action) => {

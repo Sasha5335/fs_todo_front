@@ -14,10 +14,6 @@ const TaskList = (props) => {
     dispatch(ActionCreators.getTasksRequest());
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(ActionCreators.deleteTaskSuccess());
-  }, [dispatch]);
-
   return (
     <>
       <section className={styles.todoArrMasage}>
@@ -31,11 +27,11 @@ const TaskList = (props) => {
                 {JSON.stringify(task, null, 8)}
               </div>
 
-              {/* <input
+              <input
                 type="checkbox"
                 className={styles.checked}
                 checked={task.isFetching}
-              /> */}
+              />
 
               <Icon
                 className={styles.removeBtn}

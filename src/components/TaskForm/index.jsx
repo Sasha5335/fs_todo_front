@@ -11,7 +11,7 @@ const ToDoPage = (props) => {
 
   const values = {
     body: '',
-    // dedline: '',
+    // deadline: '',
     isDone: false,
   };
 
@@ -25,7 +25,7 @@ const ToDoPage = (props) => {
       <Form>
         <Field name="body" />
         <ErrorMessage name="body" component="div" />
-        {/* <Field name="dadline" /> */}
+        {/* <Field name="deadline" type="date" /> */}
 
         <button type="reset" className={styles.resButton}>
           Reset
